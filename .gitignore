@@ -17,3 +17,7 @@ web-build/
 id_rsa*
 
 yarn.lock
+
+.idea
+
+package-lock.json

@@ -25,6 +25,8 @@ function AppNavigation() {
 
         {/* Private */}
         <Stack.Screen name="Home" component={Private.Home} />
+          <Stack.Screen name="Profile" component={Private.Profile} />
+          <Stack.Screen name="Message" component={Private.Message} />
       </Stack.Navigator>
     </NavigationContainer>
   );
