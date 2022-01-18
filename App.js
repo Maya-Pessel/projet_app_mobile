@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import 'react-native-gesture-handler';
 import Public from './src/screens/public';
+import Private from "./src/screens/private";
 import { NativeBaseProvider, Text, View } from 'native-base';
 // import { StatusBar } from 'expo-status-bar';
 // import { StyleSheet } from 'react-native';
@@ -14,12 +15,16 @@ function AppNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+
+        {/* Public */}
         <Stack.Screen
           name="Login"
           component={Public.Login}
           options={{ title: 'Welcome' }}
         />
-        {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
+
+        {/* Private */}
+        <Stack.Screen name="Home" component={Private.Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );

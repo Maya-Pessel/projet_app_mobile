@@ -1,4 +1,7 @@
+import Home from "./Home";
 
-export default {
-
+const Private = {
+    Home,
 };
+
+export default Private;
