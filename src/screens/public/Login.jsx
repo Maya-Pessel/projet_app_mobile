@@ -1,11 +1,11 @@
-import { View } from "react-native"
-import { Text } from "native-base";
+import { Text, Center, Button } from "native-base";
 
-const Login = () => {
+const Login = ({navigation}) => {
     return (
-        <View>
+        <Center h="full">
             <Text>Login screen 😁</Text>
-        </View>
+            <Button onPress={() => navigation.navigate("/public/signup")}>Créer un compte</Button>
+        </Center>
     );
 }
 

@@ -1,12 +1,11 @@
-import { View } from "react-native"
-import { Text } from "native-base";
+import { Text, Center } from "native-base";
 
-const Login = () => {
+const Home = () => {
     return (
-        <View>
+        <Center h="full">
             <Text>Hello im the Home screen 💙</Text>
-        </View>
+        </Center>
     );
 }
 
-export default Login;
+export default Home;
