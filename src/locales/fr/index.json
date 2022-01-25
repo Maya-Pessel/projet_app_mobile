@@ -1,0 +1,32 @@
+{
+    "Commun": {
+        "app_title": "App Mobile",
+        "button": {
+            "accept": "Accepter",
+            "decline": "Refuser",
+            "cancel": "Annuler"
+        }
+    },
+    "Private": {
+        "Home": {
+            "head_title": "Maison 😍"
+        },
+        "Profile": {
+            "head_title": "Profil"
+        },
+        "Message": {
+            "head_title": "Messages"
+        },
+        "MessageDetails": {
+            "head_title": "details du message"
+        }
+    },
+    "Public": {
+        "Login": {
+            "head_title": "Connexion"
+        },
+        "SignIn": {
+            "head_title": "Inscription"
+        }
+    }
+}

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { NativeBaseProvider, View } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import Loading from "./src/screens/Loading";
 import AppPrivate from './src/screens/private';
 import ROUTES from "./src/routes";
+import "./src/locales/i18n";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,9 +21,7 @@ const AppContainer = () => {
   // if(true) {
   //   return <Loading />;
   // }
-  const optionsProps = {
-    
-  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">

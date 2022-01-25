@@ -1,9 +1,12 @@
 import { Text, Center } from "native-base";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+    const { t } = useTranslation("Private"); // 
+
     return (
         <Center h="full">
-            <Text>Hello im the Home screen 💙</Text>
+            <Text fontSize={18}>{t("Home.head_title")}</Text>
         </Center>
     );
 }

@@ -1,7 +1,4 @@
-import NavigationBar from "./NavigationBar"
 
-const Components = {
-    NavigationBar,
-}
+const Components = {};
 
 export default Components;
