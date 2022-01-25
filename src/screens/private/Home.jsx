@@ -6,7 +6,7 @@ const Home = () => {
 
     return (
         <Center h="full">
-            <Text fontSize={18}>{t("Home.head_title")}</Text>
+            <Text fontSize={18}>{t("home.head_title")}</Text>
         </Center>
     );
 }

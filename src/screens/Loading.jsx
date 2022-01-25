@@ -1,5 +1,5 @@
-import { Button, Center, Text } from "native-base";
 import * as React from 'react';
+import { Button, Center, Text } from "native-base";
 
 const Loading = () => {
     return (
@@ -8,6 +8,5 @@ const Loading = () => {
         </Center>
     );
 }
-const 
 
 export default Loading;

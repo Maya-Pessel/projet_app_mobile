@@ -8,24 +8,24 @@
         }
     },
     "Private": {
-        "Home": {
-            "head_title": "Maison 😍"
+        "home": {
+            "head_title": "Maison"
         },
-        "Profile": {
+        "profile": {
             "head_title": "Profil"
         },
-        "Message": {
+        "messages": {
             "head_title": "Messages"
         },
-        "MessageDetails": {
+        "messageDetails": {
             "head_title": "details du message"
         }
     },
     "Public": {
-        "Login": {
+        "login": {
             "head_title": "Connexion"
         },
-        "SignIn": {
+        "signIn": {
             "head_title": "Inscription"
         }
     }
