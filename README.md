@@ -1,5 +1,7 @@
 # projet_app_mobile
 
+Projet d'école
+
 ## Start Apps
 ```
 yarn start
