@@ -1,11 +1,11 @@
 import { Text, Center } from "native-base";
 
-const Profile = () => {
+const MessageDetails = () => {
     return (
         <Center h="full">
-            <Text>Profile</Text>
+            <Text>MessageDetails</Text>
         </Center>
     );
 }
 
-export default Profile;
+export default MessageDetails;

@@ -5,19 +5,18 @@ const Tab = createBottomTabNavigator();
 
 const AppPrivate = () => (
     <Tab.Navigator>
-        {ROUTES.map(route => {
-            if (route.layout === "/private" && route.screen) {
-                return <Tab.Screen
-                    key={route.name}
-                    name={route.name}
-                    component={route.screen}
-                    options={{
-                        header: () => null,
-                    }}
-                />;
-            }
-            return null;
-        })}
+        <Tab.Group screenOptions={{ headerShown: false }}>
+            {ROUTES.map(route => {
+                if (route.layout === "/private" && route.menuTab && route.screen) {
+                    return <Tab.Screen
+                        key={route.name}
+                        name={route.name}
+                        component={route.screen}
+                    />;
+                }
+                return null;
+            })}
+        </Tab.Group>
     </Tab.Navigator>
 );
 

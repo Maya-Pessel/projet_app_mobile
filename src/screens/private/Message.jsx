@@ -1,11 +1,16 @@
-import { View } from "react-native"
-import { Text } from "native-base";
+import { Text, Center, Button } from "native-base";
 
-const Message = () => {
+const Message = ({ navigation }) => {
+
+    function onShowDetails(idMessage) {
+        navigation.navigate("messageDetails");
+    }
+
     return (
-        <View>
+        <Center h="full">
             <Text>Message</Text>
-        </View>
+            <Button onPress={() => onShowDetails(1)}>Go details</Button>
+        </Center>
     );
 }
 
