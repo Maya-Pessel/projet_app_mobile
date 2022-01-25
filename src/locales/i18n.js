@@ -12,7 +12,7 @@ i18n
         resources,
         lng: 'fr',
         fallbackLng: 'fr',
-        debug: true,
+        // debug: true,
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
         }
