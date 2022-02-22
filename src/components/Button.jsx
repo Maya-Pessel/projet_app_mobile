@@ -8,13 +8,13 @@ export default function Button(props) {
         flex={1}
         borderWidth={1}
         borderColor="black"
-        bg="transparent"
+        bg="white"
         _text={{
           fontSize: 16,
           color: "black",
         }}
         _pressed={{
-          bg: "transparent"
+          bg: "white"
         }}
         {...props}
       >

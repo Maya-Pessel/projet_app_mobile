@@ -1,12 +1,15 @@
 import React from 'react';
-import {extendTheme, NativeBaseProvider} from 'native-base';
+import { NativeBaseProvider } from 'native-base';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './src/redux/store';
 import i18n from "./src/locales/i18n";
 import RootNavigator from './src/RootNavigator';
+import firebase from "firebase/app";
+import config from "./src/firebase";
 
+firebase.initializeApp(config.firebase);
 
 
 export default function() {

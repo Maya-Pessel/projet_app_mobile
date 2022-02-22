@@ -1,34 +1,42 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useTranslation } from 'react-i18next';
-import Loading from "./screens/Loading";
+import firebase from "firebase";
+
+// import Loading from "./screens/Loading";
 import AppPrivate from './screens/private';
 import ROUTES from "./routes";
-
 
 const Stack = createNativeStackNavigator();
 
 
 const RootNavigator = () => {
   const { t } = useTranslation("Private");
-  const isIsSignedIn = useSelector(state => state.account.token);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsSignedIn(true);
-  //   }, 5000);
-  // }, []);
+  useEffect(() => {
+    // onAuthStateChanged returns an unsubscriber
+    const unsubscribeAuth = firebase.auth().onAuthStateChanged(async authenticatedUser => {
+      try {
+        await (authenticatedUser ? setUser(authenticatedUser) : setUser(null));
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    });
 
-//   if(true) {
-//     return <Loading />;
-//   }
+    // unsubscribe auth listener on unmount
+    return unsubscribeAuth;
+  }, []);
+  
+
 
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="home">
-        {isIsSignedIn !== null 
+        {user !== null 
         ? (
             <>
               <Stack.Screen name="AppPrivate" component={AppPrivate} options={{ header: () => null }} />

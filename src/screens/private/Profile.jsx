@@ -1,12 +1,14 @@
+import firebase from "firebase";
 import {Text, Center, Button} from "native-base";
-import accountAction from "../../reducers/account";
-import {useDispatch} from "react-redux";
-
 
 const Profile = () => {
-    const dispatch = useDispatch()
     function onPressLogout() {
-        dispatch(accountAction.signoutRequest(()=>console.log("jdjd")));
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            console.log('User signed out!');
+        }).catch((error) => {
+            // An error happened.
+        });
     }
     return (
         <Center h="full">
