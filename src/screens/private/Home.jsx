@@ -1,13 +1,12 @@
 import { Text, Center } from "native-base";
-import { useTranslation } from "react-i18next";
+import ListCard from "../../components/ListCard";
 
-const Home = () => {
-    const { t } = useTranslation("Private"); // 
+const Home = ({ navigation }) => {
 
     return (
-        <Center h="full">
-            <Text fontSize={18}>{t("home.head_title")}</Text>
-        </Center>
+      <Center flex={1} backgroundColor={"#565656"} w={"full"}>
+        <ListCard />
+      </Center>
     );
 }
 

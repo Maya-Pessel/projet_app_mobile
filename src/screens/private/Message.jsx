@@ -10,7 +10,6 @@ const Message = ({ navigation }) => {
     return (
         <Center h="full">
           <Text>Message</Text>
-          <Icons.Menu.Message/>
           <Button onPress={() => onShowDetails(1)}>Go details</Button>
         </Center>
     );
