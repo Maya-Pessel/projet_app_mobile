@@ -5,6 +5,7 @@ import Home from "./screens/private/Home";
 import Message from "./screens/private/Message";
 import MessageDetails from "./screens/private/MessageDetails";
 import ForgotPassword from "./screens/public/ForgotPassword";
+import Icons from "./assets";
 
 const ROUTES = [
     {
@@ -27,18 +28,24 @@ const ROUTES = [
         screen: Message,
         layout: "/private",
         menuTab: true,
+        Icon: Icons.Menu.Message
+
     },
     {
         name: "home",
         screen: Home,
         layout: "/private",
         menuTab: true,
+        Icon: Icons.Menu.Home
+
     },
     {
         name: "profile",
         screen: Profile,
         layout: "/private",
         menuTab: true,
+        Icon: Icons.Menu.Profile
+
     },
     {
         name: "messageDetails",

@@ -1,4 +1,5 @@
 import { Text, Center, Button } from "native-base";
+import Icons from "../../assets"
 
 const Message = ({ navigation }) => {
 
@@ -8,8 +9,9 @@ const Message = ({ navigation }) => {
 
     return (
         <Center h="full">
-            <Text>Message</Text>
-            <Button onPress={() => onShowDetails(1)}>Go details</Button>
+          <Text>Message</Text>
+          <Icons.Menu.Message/>
+          <Button onPress={() => onShowDetails(1)}>Go details</Button>
         </Center>
     );
 }

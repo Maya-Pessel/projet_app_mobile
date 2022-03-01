@@ -5,6 +5,7 @@ import ROUTES from "../../routes";
 const Tab = createBottomTabNavigator();
 
 const AppPrivate = () => {
+
   const { t } = useTranslation("Private");
   return (
     <Tab.Navigator>
@@ -16,7 +17,11 @@ const AppPrivate = () => {
               name={route.name}
               component={route.screen}
               options={{
-                title: t(`${route.name}.head_title`)
+                title: t(`${route.name}.head_title`),
+                tabBarIcon: ({focused}) => {
+                  const Icon = route.Icon;
+                  return <Icon color={focused ? "black" : "gray"} />
+                }
               }}
             />;
           }
@@ -25,6 +30,5 @@ const AppPrivate = () => {
       </Tab.Group>
     </Tab.Navigator>
   );
-};
-
+}
 export default AppPrivate;
