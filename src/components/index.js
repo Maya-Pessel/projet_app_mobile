@@ -1,4 +1,7 @@
+import Badge from "./Badge";
 
-const Components = {};
+const Components = {
+  Badge
+};
 
 export default Components;
