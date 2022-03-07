@@ -4,6 +4,7 @@ import Profile from "./screens/private/Profile";
 import Home from "./screens/private/Home";
 import Message from "./screens/private/Message";
 import MessageDetails from "./screens/private/MessageDetails";
+import ForgotPassword from "./screens/public/ForgotPassword";
 
 const ROUTES = [
     {
@@ -14,6 +15,11 @@ const ROUTES = [
     {
         name: "signup",
         screen: SignUp,
+        layout: "/public",
+    },
+    {
+        name:"forgot",
+        screen: ForgotPassword,
         layout: "/public",
     },
     {

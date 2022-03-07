@@ -21,7 +21,7 @@ const RootNavigator = () => {
     const unsubscribeAuth = firebase.auth().onAuthStateChanged(async authenticatedUser => {
       try {
         await (authenticatedUser ? setUser(authenticatedUser) : setUser(null));
-        setIsLoading(false);
+        // setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
