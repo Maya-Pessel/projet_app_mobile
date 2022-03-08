@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import {StyleSheet, Image} from 'react-native';
 
 import SwipeCards from 'react-native-swipe-cards';
+import CardUser from "./CardUser";
 
 class Card extends React.Component {
   constructor(props) {
@@ -68,14 +69,14 @@ export default class extends React.Component {
     return (
       <SwipeCards
         cards={this.state.cards}
-        renderCard={(cardData) => <Card {...cardData} />}
+        renderCard={(cardData) => <CardUser {...cardData} screen={"home"}/>}
         renderNoMoreCards={() => <NoMoreCards />}
         handleYup={this.handleYup}
         handleNope={this.handleNope}
-        handleMaybe={this.handleMaybe}
-        hasMaybeAction
+        //handleMaybe={this.handleMaybe}
+        //hasMaybeAction
         nopeText={"No"}
-        maybeStyle={{display: "none"}}
+        //maybeStyle={{display: "none"}}
         //yupStyle={{display: "none"}}
         //nopeStyle={{display: "none"}}
         yupText={"Yes"}

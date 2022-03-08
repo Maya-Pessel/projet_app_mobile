@@ -22,6 +22,23 @@ export default function Button(props) {
       </NBButton>
 
     );
+  if (props.third)
+    return (
+      <NBButton
+        bg="#929292"
+        _text={{
+          fontSize: 16,
+          color: "white",
+        }}
+        _pressed={{
+          bg: "#565656"
+        }}
+        {...props}
+      >
+        {props.children}
+      </NBButton>
+
+    );
   return (
     <NBButton
       _text={{
