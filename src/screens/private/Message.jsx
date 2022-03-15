@@ -4,7 +4,7 @@ import Icons from "../../assets"
 const Message = ({ navigation }) => {
 
     function onShowDetails(idMessage) {
-        navigation.navigate("messageDetails");
+        navigation.navigate("messageDetails", { title: "Maya" });
     }
 
     return (

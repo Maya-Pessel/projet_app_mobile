@@ -47,4 +47,24 @@ function Dislike(props) {
   )
 }
 
-export default {Dislike, Like};
+
+function SendMessage(props) {
+  return (
+    <Svg
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <Path
+        d="M3.249 2.376l18.06 8.638a1.071 1.071 0 010 1.933l-18.06 8.639a1.07 1.07 0 01-1.497-1.25l2.28-8.355-2.28-8.357a1.071 1.071 0 011.497-1.247zM3.116 3.74l2.077 7.617h9.378a.644.644 0 01.637.558l.006.085a.643.643 0 01-.555.638l-.088.006H5.182l-2.065 7.58L20.35 11.98 3.116 3.738v.001z"
+        fill="#fff"
+      />
+    </Svg>
+  )
+}
+
+
+export default {Dislike, Like, SendMessage};

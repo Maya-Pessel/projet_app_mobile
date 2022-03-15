@@ -3,8 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useTranslation } from 'react-i18next';
 import firebase from "firebase";
-import { Center, Spinner, Text, View } from "native-base";
-// import Loading from "./screens/Loading";
+import { Center, Spinner, View } from "native-base";
 import AppPrivate from './screens/private';
 import ROUTES from "./routes";
 
@@ -56,9 +55,7 @@ const RootNavigator = () => {
                       key={route.name}
                       name={route.name}
                       component={route.screen}
-                      options={{
-                        title: t(`${route.name}.head_title`),
-                      }}
+                      options={({ route }) => ({ title: route.params.title, headerTitleAlign: 'center' })}
                     />
                   }
                   return null;
@@ -80,9 +77,7 @@ const RootNavigator = () => {
           )}
         </Stack.Navigator>
       </NavigationContainer>
-
     </View>
-
   );
 };
 
