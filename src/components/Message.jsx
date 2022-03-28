@@ -38,8 +38,8 @@ export default function Message({message}) {
     >
       <HStack>
         {isSender && <DateFromNow />}
-        <VStack bg={isSender ? "green.300" : "gray.200"} maxW="70%" rounded={8} p="2">
-          <Text fontFamily={"body"}>{message.content}</Text>
+        <VStack bg={isSender ? "#E8E8E8" : "#2f2f3e"} maxW="70%" rounded={8} p="2">
+          <Text color={isSender ? "#000" : "#fff"} fontFamily={"body"}>{message.content}</Text>
         </VStack>
         {!isSender && <DateFromNow />}
       </HStack>
