@@ -21,6 +21,7 @@ import {
   Outfit_900Black,
 } from '@expo-google-fonts/outfit';
 import { customTheme } from "./src/assets/theme";
+import * as fb from "./src/firebase";
 
 firebase.initializeApp(config.firebase);
 

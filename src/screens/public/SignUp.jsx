@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { VStack, Stack, Input, HStack, Heading, Center, KeyboardAvoidingView, Link, Text, FormControl } from "native-base";
 import Button from "../../components/Button";
-import Loading from "../Loading";
 import firebase from "firebase";
+const db = firebase.firestore();
 
 const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState("f_bourih@etu-webschoolfactory.fr");
@@ -14,12 +14,15 @@ const SignUp = ({ navigation }) => {
   };
 
   function onPressSubmit() {
-    console.log("email", email);
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        console.log('User created !');
+      .then(({ user }) => {
+        db.collection("users").doc(user.uid).set({ email: user.email }).then(() => {
+          console.log("Document successfully written!");
+        }).catch((error) => {
+          console.error("Error adding document: ", error);
+        });
       })
       .catch(e => {
         console.log(e);
