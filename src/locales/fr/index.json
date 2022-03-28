@@ -18,7 +18,10 @@
             "head_title": "Messages"
         },
         "messageDetails": {
-            "head_title": "details du message"
+            "head_title": "Détails du message"
+        },
+        "EditProfile": {
+            "head_title": "Éditer le profil"
         }
     },
     "Public": {

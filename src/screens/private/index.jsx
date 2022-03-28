@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
 import ROUTES from "../../routes";
+import {Center} from "native-base";
 
 const Tab = createBottomTabNavigator();
 
@@ -8,7 +9,10 @@ const AppPrivate = () => {
 
   const { t } = useTranslation("Private");
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{
+      tabBarStyle: {backgroundColor:"#272B37", height:45, },
+      tabBarLabel:() => {return null}
+    }}>
       <Tab.Group screenOptions={{ headerShown: false }}>
         {ROUTES.map(route => {
           if (route.layout === "/private" && route.menuTab && route.screen) {
@@ -20,7 +24,10 @@ const AppPrivate = () => {
                 title: t(`${route.name}.head_title`),
                 tabBarIcon: ({focused}) => {
                   const Icon = route.Icon;
-                  return <Icon color={focused ? "black" : "gray"} />
+                  const containerIconeSize = route.name === "home" ? "75px" : "60px"
+                  return <Center rounded={100} bg={"#272B37"} size={containerIconeSize} top={"-10px"}>
+                    <Icon focused={focused}/>
+                  </Center>
                 }
               }}
             />;

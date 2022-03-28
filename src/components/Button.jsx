@@ -25,7 +25,8 @@ export default function Button(props) {
   if (props.third)
     return (
       <NBButton
-        bg="#929292"
+        bg="#FFFFFF40"
+        blurRadius={90}
         _text={{
           fontSize: 16,
           color: "white",

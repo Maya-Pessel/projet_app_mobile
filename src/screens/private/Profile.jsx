@@ -3,9 +3,10 @@ import {Text, Box, Center, View, VStack, HStack, Avatar} from "native-base";
 import Badge from "../../components/Badge";
 import Button from "../../components/Button";
 import CardUser from "../../components/CardUser";
+import {LinearGradient} from "expo-linear-gradient";
 
 
-const Profile = () => {
+const Profile = ({navigation}) => {
     function onPressLogout() {
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
@@ -15,10 +16,16 @@ const Profile = () => {
         });
     }
     return (
+      <LinearGradient
+        // Button Linear Gradient
+        colors={['#394051', '#333d5c' ]} style={{flex:1}}>
+      <View flex={1} px={3} py={8}>
 
-      <View flex={1} px={3} py={8} bg={'#565656'}>
-        <CardUser screen="profile"/>
+
+        <CardUser screen="profile" navigation={navigation}/>
+
       </View>
+      </LinearGradient>
     );
 }
 

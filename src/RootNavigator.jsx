@@ -55,8 +55,10 @@ const RootNavigator = () => {
                       key={route.name}
                       name={route.name}
                       component={route.screen}
-                      options={({ route }) => ({ title: route.params.title, headerTitleAlign: 'center' })}
-                    />
+                      options={({ route }) => {
+                        const title = route.params?.title || t(route.name + ".head_title")
+                        return { title, headerTitleAlign: 'center' };
+                      }}                    />
                   }
                   return null;
                 })}

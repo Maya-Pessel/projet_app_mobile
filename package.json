@@ -19,6 +19,7 @@
     "@reduxjs/toolkit": "^1.7.1",
     "expo": "~44.0.0",
     "expo-font": "^10.0.5",
+    "expo-linear-gradient": "^11.0.3",
     "expo-status-bar": "~1.2.0",
     "firebase": "^8.10.0",
     "i18next": "^21.6.7",

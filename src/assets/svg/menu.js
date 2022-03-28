@@ -1,22 +1,26 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 
-const Home = ({color="#fff"}) => (
-  <Svg
-    width={44}
-    height={43}
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <Path
-      d="M15 41.418h14m-14 0h-4.667A9.333 9.333 0 0 1 1 32.085V17.404A9.333 9.333 0 0 1 5.496 9.42l11.667-7.07a9.333 9.333 0 0 1 9.674 0l11.667 7.07A9.334 9.334 0 0 1 43 17.401v14.684a9.333 9.333 0 0 1-9.333 9.333H15Zm0 0v-9.333a7 7 0 0 1 7-7v0a7 7 0 0 1 7 7v9.333H15Z"
-      stroke={color}
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
-)
+const Home = ({focused=false}) => {
+  const strokeColor = "white";
+  const strokeWidth = 1.5
+  return (
+    <Svg
+      width={44}
+      height={43}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <Path
+        d="M15 41.418h14m-14 0h-4.667A9.333 9.333 0 0 1 1 32.085V17.404A9.333 9.333 0 0 1 5.496 9.42l11.667-7.07a9.333 9.333 0 0 1 9.674 0l11.667 7.07A9.334 9.334 0 0 1 43 17.401v14.684a9.333 9.333 0 0 1-9.333 9.333H15Zm0 0v-9.333a7 7 0 0 1 7-7v0a7 7 0 0 1 7 7v9.333H15Z"
+        stroke={strokeColor}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
 
 
 const Message = ({color="#fff"}) => (
@@ -34,29 +38,34 @@ const Message = ({color="#fff"}) => (
 )
 
 //profile
-const Profile = ({color="#fff"}) => (
-  <Svg
-    width={37}
-    height={37}
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <Path
-      d="M18.5 1C8.835 1 1 8.835 1 18.5S8.835 36 18.5 36 36 28.165 36 18.5 28.165 1 18.5 1Z"
-      stroke={color}
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <Path
-      d="M4.974 29.605s3.9-4.98 13.526-4.98c9.625 0 13.527 4.98 13.527 4.98M18.5 18.5a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5v0Z"
-      stroke={color}
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
-)
+const Profile = ({focused = false}) => {
+  const strokeColor = "white";
+  const strokeWidth = 1.5
+
+  return (
+    <Svg
+      width={37}
+      height={37}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <Path
+        d="M18.5 1C8.835 1 1 8.835 1 18.5S8.835 36 18.5 36 36 28.165 36 18.5 28.165 1 18.5 1Z"
+        stroke={strokeColor}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M4.974 29.605s3.9-4.98 13.526-4.98c9.625 0 13.527 4.98 13.527 4.98M18.5 18.5a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5v0Z"
+        stroke={strokeColor}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
 
 
 
