@@ -6,33 +6,49 @@ import firebase from "firebase";
 import { Center, Spinner, View } from "native-base";
 import AppPrivate from './screens/private';
 import ROUTES from "./routes";
+import { useDispatch, useSelector } from 'react-redux';
+import { AccountTypes } from './reducers/account';
 
 const Stack = createNativeStackNavigator();
 
-
 const RootNavigator = () => {
   const { t } = useTranslation("Private");
-  const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.account);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
     // onAuthStateChanged returns an unsubscriber
     const unsubscribeAuth = firebase.auth().onAuthStateChanged(async authenticatedUser => {
       setIsLoading(true);
       try {
-        await (authenticatedUser ? setUser(authenticatedUser) : setUser(null));
+        if (authenticatedUser) {
+          dispatch({ type: AccountTypes.SET_USER_ID, userId: authenticatedUser.uid });
+        } else {
+          dispatch({ type: AccountTypes.RESET_USER })
+        }
         setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
     });
-
     // unsubscribe auth listener on unmount
     return unsubscribeAuth;
   }, []);
-  
 
+  // load user profile when userId is up (after signin)
+  useEffect(() => {
+    if (user.userId) {
+      firebase.firestore().collection("users").doc(user.userId).get().then(doc => {
+        dispatch({ type: AccountTypes.SET_USER, user: doc.data() });
+        dispatch({ type: AccountTypes.SET_USER_AVATART, user: doc.data().avatar });
+        console.log("change")
+        console.log(doc.data().avatar);
+      });
+    }
+  }, [user.userId]);
+  
 
   return (
     <View flex={1}>
@@ -45,7 +61,7 @@ const RootNavigator = () => {
 
       <NavigationContainer>
         <Stack.Navigator initialRouteName="home">
-          {user !== null 
+          {user.userId !== null
           ? (
               <>
                 <Stack.Screen name="AppPrivate" component={AppPrivate} options={{ header: () => null }} />

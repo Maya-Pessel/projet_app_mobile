@@ -1,4 +1,5 @@
 import React from 'react';
+import "./src/firebase";
 import { NativeBaseProvider, StatusBar } from 'native-base';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
@@ -6,8 +7,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './src/redux/store';
 import i18n from "./src/locales/i18n";
 import RootNavigator from './src/RootNavigator';
-import firebase from "firebase/app";
-import config from "./src/firebase";
 import {
   useFonts,
   Outfit_100Thin,
@@ -21,9 +20,11 @@ import {
   Outfit_900Black,
 } from '@expo-google-fonts/outfit';
 import { customTheme } from "./src/assets/theme";
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs();//Ignore all log notifications
+console.disableYellowBox = true;
 
-firebase.initializeApp(config.firebase);
-
+LogBox.ignoreLogs(['NativeBase:']);
 
 export default function() {
 

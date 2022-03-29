@@ -1,12 +1,13 @@
-import {Box, Center, HStack, Text, VStack} from "native-base";
+import {Box, Center, HStack, Image, Text, VStack} from "native-base";
 import Badge from "./Badge";
 import Button from "./Button";
 import Icons from "../assets";
 
 
-export default function CardUser(props) {
+export default function CardUser({ navigation, user, screen="" }) {
+
   function onEditProfile() {
-    props.navigation.navigate("EditProfile");
+    navigation.navigate("EditProfile");
   }
 
   return (
@@ -26,28 +27,37 @@ export default function CardUser(props) {
     >
 
       <HStack mt={10}>
-        <Center>
-          <Box size={32} bg={"#22252D"} borderRadius={100}/>
+        <Center mt={3}>
+          <Image
+            size={32}
+            resizeMode="cover"
+            rounded="full"
+            alt={"Alternate Text"}
+            source={{ uri: user.avatar }}
+          />
         </Center>
-        <VStack >
-          <Text textAlign={'right'} fontSize={48} color={"white"}>Fares</Text>
-          <Text textAlign={'right'} fontSize={26} color={"white"}>23 ans</Text>
+        <VStack alignItems="flex-end">
+          <Text textAlign={'right'} fontSize={48} color={"white"}>{user.name||"Pseudo"}</Text>
+          <Text textAlign={'right'} fontSize={26} color={"white"}>{user.birthday||"Age"}</Text>
           <HStack space={2} mt={3}>
-            <Badge>Dota</Badge><Badge>Dota</Badge>
-            <Badge>LoL</Badge>
+            {user.game && (
+              <Badge>{user.game}</Badge>
+            )}
           </HStack>
         </VStack>
       </HStack>
-      <Text  py={10} fontSize={18} color={"white"} textAlign={"justify"}>Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée généralement.</Text>
+      <Text  py={10} fontSize={18} color={"white"} textAlign={"justify"}>
+        {user.description || "Pas de bio"}
+      </Text>
 
-      {props?.screen === "profile" && (
-        <HStack>
+      {screen === "profile" && (
+        <HStack position="absolute" bottom={-10} zIndex={9999}>
           <Box flex={1}/>
           <Button third onPress={onEditProfile}>Editer le profil</Button>
         </HStack>
       )}
 
-      {props?.screen === "home" && (
+      {screen === "home" && (
         <HStack justifyContent={"space-between"} >
           <Center borderRadius={100} bg={"#F5C5C5"} p={3} pt={4}>
             <Icons.Action.Dislike/>

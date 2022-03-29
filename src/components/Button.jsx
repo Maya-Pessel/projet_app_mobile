@@ -1,4 +1,4 @@
-import {Button as NBButton, HStack} from "native-base";
+import {Button as NBButton} from "native-base";
 
 export default function Button(props) {
 
