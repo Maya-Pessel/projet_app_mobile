@@ -1,5 +1,5 @@
 import React from 'react';
-import { NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider, StatusBar } from 'native-base';
 import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -48,6 +48,7 @@ export default function() {
       <PersistGate loading={null} persistor={persistor}>
         <I18nextProvider i18n={i18n}>
           <NativeBaseProvider theme={customTheme}>
+            <StatusBar barStyle={"light-content"}/>
             <RootNavigator />
           </NativeBaseProvider>
         </I18nextProvider>

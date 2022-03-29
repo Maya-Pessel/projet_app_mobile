@@ -8,15 +8,23 @@ const Message = ({ navigation }) => {
     function onShowDetails(idMessage) {
         navigation.navigate("messageDetails", { title: "Maya" });
     }
-
-    return (
-
+    function NBBox(props) {
+      return <Box bg={"#22252DF2"}  pt={6} pb={4}  {...props} />;
+      }
+  return (
         <LinearGradient
           // Button Linear Gradient
           colors={['#394051', '#333d5c' ]} style={{flex:1}}>
-      <ScrollView>
-        <VStack pt={10}>
-          <Heading pt={5} pb={5} textAlign={"center"} color={"white"}>Messages</Heading>
+
+      <ScrollView stickyHeaderIndices={[0]}>
+        <NBBox>
+          {
+            /* using theme colors to set text color */
+          }
+          <Heading  textAlign={"center"} color={"white"} >Messages</Heading>
+
+        </NBBox>
+        <VStack pt={7}>
           <Pressable onPress={() => onShowDetails(1)}>
             <HStack>
               <Center px={5}>

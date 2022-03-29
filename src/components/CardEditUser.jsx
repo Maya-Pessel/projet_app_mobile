@@ -23,21 +23,21 @@ export default function CardEditUser(props) {
 
         <Center mt={3}>
           <Box size={32} bg={"#22252D"} borderRadius={100}/>
-        </Center>
 
-          <Input variant="underlined" placeholder="Fares" />
-          <Input variant="underlined" placeholder="21" />
+
+          <Input color={"white"} variant="underlined" placeholder="Fares" />
+          <Input color={"white"} variant="underlined" placeholder="21" />
           <HStack space={2} mt={3}>
-            <Badge>Dota</Badge><Badge>Dota</Badge>
+            <Badge>Dota</Badge>
             <Badge>LoL</Badge>
-            <Badge>LoL</Badge>
-            <Badge>LoL</Badge>
+
           </HStack>
-          <TextArea h={20} placeholder="Text Area Placeholder" w="75%" maxW="300" />
+          <TextArea color={"white"} h={20} placeholder="Text Area Placeholder" w="75%" maxW="300" />
           <HStack space={1} mt={3}>
             <Button third>Annuler</Button>
             <Button third>Valider</Button>
           </HStack>
+        </Center>
     </VStack>
   );
 };

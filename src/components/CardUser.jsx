@@ -22,6 +22,7 @@ export default function CardUser(props) {
         color: "white",
         fontWeight: "bold"
       }}
+
     >
 
       <HStack mt={10}>
@@ -40,7 +41,7 @@ export default function CardUser(props) {
       <Text  py={10} fontSize={18} color={"white"} textAlign={"justify"}>Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée généralement.</Text>
 
       {props?.screen === "profile" && (
-        <HStack position="absolute" bottom={-10} zIndex={9999}>
+        <HStack>
           <Box flex={1}/>
           <Button third onPress={onEditProfile}>Editer le profil</Button>
         </HStack>
