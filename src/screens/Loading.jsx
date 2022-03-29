@@ -1,14 +1,13 @@
 import * as React from 'react';
-import {Button, View, Center, Heading, HStack, Spinner, Text} from "native-base";
+import { Center, Heading, HStack, Spinner } from "native-base";
 
-const Loading = () => {
+const Loading = ({loadingMessage="Chargement"}) => {
     return (
-        <Center h="full" space={4}>
-
-        <HStack space={2} alignItems="center">
-                <Spinner accessibilityLabel="Loading posts" size="lg" />
+        <Center position="absolute" top={0} bottom={0} right={0} left={0} zIndex={999} space={4} shadow="3">
+            <HStack space={2} alignItems="center">
+                <Spinner accessibilityLabel="Loading posts" color={"primary.500"} size="lg" />
                 <Heading color="primary.500" fontSize="lg">
-                    Loading
+                    {loadingMessage}
                 </Heading>
             </HStack>
         </Center>

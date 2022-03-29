@@ -44,12 +44,12 @@ export default class extends React.Component {
     super(props);
     this.state = {
       cards: [
-        {text: 'Tomato', backgroundColor: '#303030'},
-        {text: 'Aubergine', backgroundColor: '#303030'},
-        {text: 'Courgette', backgroundColor: '#303030'},
-        {text: 'Blueberry', backgroundColor: '#303030'},
-        {text: 'Maya 👸🏼', backgroundColor: '#303030'},
-        {text: 'orange', backgroundColor: '#303030'},
+        {name: "Fares", birthday: "24", game: "lol"},
+        { name: 'Aubergine', birthday: "15", game: "lol"},
+        { name: 'Courgette', birthday: "34", game: "cod"},
+        { name: 'Blueberry', birthday: "24", game: "overwatch"},
+        { name: 'Maya 👸🏼', birthday: "19", game: "csgo"},
+        { name: 'orange', birthday: "29", game: "lol"},
       ]
     };
   }
@@ -69,7 +69,7 @@ export default class extends React.Component {
     return (
       <SwipeCards
         cards={this.state.cards}
-        renderCard={(cardData) => <CardUser {...cardData} screen={"home"}/>}
+        renderCard={(cardData) => <CardUser user={cardData} screen={"home"} />}
         renderNoMoreCards={() => <NoMoreCards />}
         handleYup={this.handleYup}
         handleNope={this.handleNope}
