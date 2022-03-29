@@ -2,6 +2,7 @@ import {Text, Center, Box, TextArea, HStack, View, ScrollView, VStack, Pressable
 import Icons from "../../assets";
 import Button from "../../components/Button";
 import Message from "../../components/Message";
+import {LinearGradient} from "expo-linear-gradient";
 
 const MOCK_MESSAGE = [
   { _id: "1", content: "Ut vitae sapien facilisis, varius sem nec, consequat massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.", sendAt: new Date(), author: { name: "Fares", _id: "987" } },
@@ -19,13 +20,16 @@ const MessageDetails = () => {
 
   function SendButton() {
     return (
-      <Pressable onPress={() => console.log("send message")} bg="black" rounded="full" p={1} mr="1">
+      <Pressable onPress={() => console.log("send message")} bg="#22252D" rounded="full" p={1} mr="1">
         <Icons.Action.SendMessage />
       </Pressable>
     );
   }
 
   return (
+    <LinearGradient
+      // Button Linear Gradient
+      colors={['#394051', '#333d5c' ]} style={{flex:1}}>
     <View flex={1}>
       <ScrollView flex={1} px={3} py={4}>
         <VStack space={2}>
@@ -33,7 +37,7 @@ const MessageDetails = () => {
         </VStack>
       </ScrollView>
 
-      <Box alignItems="center" py={2}  bg="black">
+      <Box alignItems="center" py={2}  bg="#22252D">
         <Input
           w={{
             base: "75%",
@@ -46,10 +50,11 @@ const MessageDetails = () => {
           borderRadius="full"
           mr="2"
           bg="white"
-          color="muted.400"
+          color="#22252D"
         />
       </Box>
     </View>
+      </LinearGradient>
   );
 }
 

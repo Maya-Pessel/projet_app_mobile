@@ -74,7 +74,8 @@ const RootNavigator = () => {
                       options={({ route }) => {
                         const title = route.params?.title || t(route.name + ".head_title")
                         return { title, headerTitleAlign: 'center' };
-                      }}                    />
+                      }}
+                    />
                   }
                   return null;
                 })}

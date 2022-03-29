@@ -23,6 +23,7 @@ export default function CardUser({ navigation, user, screen="" }) {
         color: "white",
         fontWeight: "bold"
       }}
+
     >
 
       <HStack mt={10}>
