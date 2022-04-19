@@ -28,6 +28,7 @@ export const INITIAL_STATE = Immutable({
     game: "",
     description: "",
     avatar: "",
+    follows: [],
   },
   userId: null,
 });
@@ -43,6 +44,7 @@ export const setUser = (state, action) => {
   let nextSate = { ...state.user, ...action.user };
   return Immutable.setIn(state, ["user"], nextSate);
 };
+
 export const setUserId = (state, action) => {
   return Immutable.setIn(state, ["userId"], action.userId);
 };

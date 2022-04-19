@@ -40,7 +40,7 @@ export default function CardUser({ navigation, user, screen="" }) {
           <Text textAlign={'right'} fontSize={48} color={"white"}>{user.name||"Pseudo"}</Text>
           <Text textAlign={'right'} fontSize={26} color={"white"}>{user.birthday||"Age"}</Text>
           <HStack space={2} mt={3}>
-            {user.game && (
+            {user.game != "" && (
               <Badge>{user.game}</Badge>
             )}
           </HStack>

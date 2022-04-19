@@ -3,6 +3,7 @@ import Icons from "../../assets";
 import Button from "../../components/Button";
 import Message from "../../components/Message";
 import {LinearGradient} from "expo-linear-gradient";
+import { useEffect } from "react";
 
 const MOCK_MESSAGE = [
   { _id: "1", content: "Ut vitae sapien facilisis, varius sem nec, consequat massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.", sendAt: new Date(), author: { name: "Fares", _id: "987" } },
@@ -18,6 +19,9 @@ const MOCK_MESSAGE = [
 
 const MessageDetails = () => {
 
+  useEffect(() => {
+    // firebase.firestore().collection("messages").where("id", "in", follows)
+  }, []);
   function SendButton() {
     return (
       <Pressable onPress={() => console.log("send message")} bg="#22252D" rounded="full" p={1} mr="1">

@@ -1,29 +1,29 @@
-import {Text, Center, View, Button, Box} from "native-base";
 'use strict';
-
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import {Text, Center, View, Button, Box} from "native-base";
+import firebase from "firebase";
 import {StyleSheet, Image} from 'react-native';
-
 import SwipeCards from 'react-native-swipe-cards';
 import CardUser from "./CardUser";
 
-class Card extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+// class Card extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     console.log()
+//   }
 
-  render() {
-    return (
-      // justifyContent: 'center',
-      // alignItems: 'center',
-      // width: 300,
-      // height: 300,
-      <View backgroundColor="#303030" alignItems="center" justifyContent="center" h="5/6" w="full">
-        <Text>{this.props.text}</Text>
-      </View>
-    )
-  }
-}
+//   render() {
+//     return (
+//       // justifyContent: 'center',
+//       // alignItems: 'center',
+//       // width: 300,
+//       // height: 300,
+//       <View backgroundColor="#303030" alignItems="center" justifyContent="center" h="5/6" w="full">
+//         <Text>{this.props.text}</Text>
+//       </View>
+//     )
+//   }
+// }
 
 class NoMoreCards extends Component {
   constructor(props) {
@@ -39,50 +39,51 @@ class NoMoreCards extends Component {
   }
 }
 
-export default class extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cards: [
-        {name: "Fares", birthday: "24", game: "lol"},
-        { name: 'Aubergine', birthday: "15", game: "lol"},
-        { name: 'Courgette', birthday: "34", game: "cod"},
-        { name: 'Blueberry', birthday: "24", game: "overwatch"},
-        { name: 'Maya 👸🏼', birthday: "19", game: "csgo"},
-        { name: 'orange', birthday: "29", game: "lol"},
-      ]
-    };
+
+export default function ({ users, userId, userName }) {
+
+  function handleYup(card) {
+    firebase.firestore().collection("messages").add({
+      users: [userId, card.id],
+      lastMessage: "",
+      messages: [],
+    })
+    .then(function (docRef) {
+      firebase.firestore().collection("users").doc(userId).collection("follows").doc(docRef.id).set({ name: card.name });
+      firebase.firestore().collection("users").doc(card.id).collection("follows").doc(docRef.id).set({ name: userName });
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
   }
 
-  handleYup (card) {
-    console.log(`Yup for ${card.text}`)
-  }
-  handleNope (card) {
+  function handleNope(card) {
     console.log(`Nope for ${card.text}`)
   }
-  handleMaybe (card) {
+
+  function handleMaybe(card) {
     console.log(`Maybe for ${card.text}`)
   }
-  render() {
-    // If you want a stack of cards instead of one-per-one view, activate stack mode
-    // stack={true}
-    return (
-      <SwipeCards
-        cards={this.state.cards}
-        renderCard={(cardData) => <CardUser user={cardData} screen={"home"} />}
-        renderNoMoreCards={() => <NoMoreCards />}
-        handleYup={this.handleYup}
-        handleNope={this.handleNope}
-        //handleMaybe={this.handleMaybe}
-        //hasMaybeAction
-        nopeText={"No"}
-        //maybeStyle={{display: "none"}}
-        //yupStyle={{display: "none"}}
-        //nopeStyle={{display: "none"}}
-        yupText={"Yes"}
-      />
-    )
-  }
+
+  // If you want a stack of cards instead of one-per-one view, activate stack mode
+  // stack={true}
+  return (
+    <SwipeCards
+      cards={users}
+      renderCard={(cardData) => <CardUser user={cardData} screen={"home"} />}
+      renderNoMoreCards={() => <NoMoreCards />}
+      handleYup={handleYup}
+      handleNope={handleNope}
+      //handleMaybe={handleMaybe}
+      //hasMaybeAction
+      nopeText={"No"}
+      //maybeStyle={{display: "none"}}
+      //yupStyle={{display: "none"}}
+      //nopeStyle={{display: "none"}}
+      yupText={"Yes"}
+    />
+  )
+
 }
 
 const styles = StyleSheet.create({

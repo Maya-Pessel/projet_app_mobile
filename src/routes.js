@@ -30,7 +30,6 @@ const ROUTES = [
         layout: "/private",
         menuTab: true,
         Icon: Icons.Menu.Message
-
     },
     {
         name: "home",
@@ -46,7 +45,6 @@ const ROUTES = [
         layout: "/private",
         menuTab: true,
         Icon: Icons.Menu.Profile
-
     },
     {
         name: "messageDetails",

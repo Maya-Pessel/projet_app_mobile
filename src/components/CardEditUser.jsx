@@ -190,7 +190,7 @@ export default function CardEditUser() {
       <TextArea
         w="75%" maxW="300" h={20}
         value={userEdit.description}
-        onChangeText={text => setUserEdit({...userEdit,description: text})}
+        onChangeText={text => setUserEdit({...userEdit, description: text})}
         color="white"
         selectionColor='white'
         placeholder="Bio"
@@ -205,10 +205,8 @@ export default function CardEditUser() {
           <Actionsheet.Header>Choisir un avatar</Actionsheet.Header>
           <Actionsheet.Item onPress={_takePhoto}>Prendre une photo</Actionsheet.Item>
           <Actionsheet.Item onPress={_pickImage}>Importer une photo</Actionsheet.Item>
-        </Actionsheet.Content>
-        <Actionsheet.Footer>
           <Actionsheet.Item onPress={onClose}>Annuler</Actionsheet.Item>
-        </Actionsheet.Footer>
+        </Actionsheet.Content>
       </Actionsheet>
     </VStack>
   );

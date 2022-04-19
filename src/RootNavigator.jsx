@@ -42,9 +42,7 @@ const RootNavigator = () => {
     if (user.userId) {
       firebase.firestore().collection("users").doc(user.userId).get().then(doc => {
         dispatch({ type: AccountTypes.SET_USER, user: doc.data() });
-        dispatch({ type: AccountTypes.SET_USER_AVATART, user: doc.data().avatar });
-        console.log("change")
-        console.log(doc.data().avatar);
+        dispatch({ type: AccountTypes.SET_USER_AVATAR, user: doc.data().avatar });
       });
     }
   }, [user.userId]);
