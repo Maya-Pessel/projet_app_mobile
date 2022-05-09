@@ -1,10 +1,12 @@
 'use strict';
-import React, { Component, useState } from 'react';
-import {Text, Center, View, Button, Box} from "native-base";
+import React, { Component } from 'react';
+import { Text, View } from "native-base";
 import firebase from "firebase";
-import {StyleSheet, Image} from 'react-native';
+import {StyleSheet} from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 import CardUser from "./CardUser";
+import { useDispatch } from 'react-redux';
+import { AccountTypes } from '../reducers/account';
 
 // class Card extends React.Component {
 //   constructor(props) {
@@ -41,6 +43,7 @@ class NoMoreCards extends Component {
 
 
 export default function ({ users, userId, userName }) {
+  const dispatch = useDispatch();
 
   function handleYup(card) {
     firebase.firestore().collection("messages").add({
@@ -51,6 +54,7 @@ export default function ({ users, userId, userName }) {
     .then(function (docRef) {
       firebase.firestore().collection("users").doc(userId).collection("follows").doc(docRef.id).set({ name: card.name });
       firebase.firestore().collection("users").doc(card.id).collection("follows").doc(docRef.id).set({ name: userName });
+      dispatch({ type: AccountTypes.ADD_USER_FOLLOWS, follows: [card] });
     })
     .catch(function (error) {
       console.error("Error adding document: ", error);
@@ -74,13 +78,13 @@ export default function ({ users, userId, userName }) {
       renderNoMoreCards={() => <NoMoreCards />}
       handleYup={handleYup}
       handleNope={handleNope}
+      onClickHandler={()=>null}
       //handleMaybe={handleMaybe}
       //hasMaybeAction
-      nopeText={"No"}
-      //maybeStyle={{display: "none"}}
-      //yupStyle={{display: "none"}}
-      //nopeStyle={{display: "none"}}
-      yupText={"Yes"}
+      nopeText={""}
+      nopeStyle={{ borderColor: "transparent" }}
+      yupStyle={{ borderColor: "transparent"}}
+      yupText={""}
     />
   )
 

@@ -1,10 +1,12 @@
 import moment from "moment";
 import { Box, HStack, PresenceTransition, Pressable, Text, VStack } from "native-base";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Message({message}) {
+  const userId = useSelector(state => state.account.userId);
   const [isShowingDate, setIsShowingDate] = useState(false);
-  const isSender = message.author._id === "987";
+  const isSender = message.author === userId;
 
   function DateFromNow() {
     return (
@@ -30,7 +32,6 @@ export default function Message({message}) {
 
   return (
     <Pressable
-      key={message._id}
       w="full"
       alignItems={isSender ? "flex-end" : "flex-start"}
       onPressIn={() => setIsShowingDate(true)}

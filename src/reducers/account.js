@@ -7,6 +7,8 @@ const { Types, Creators } = createActions({
   setUser: ["user"],
   setUserId: ["userId"],
   setUserAvatar: ["avatar"],
+  addUserFollows: ["follows"],
+  setUserFollows: ["follows"],
 });
 
 export const AccountTypes = Types;
@@ -53,6 +55,15 @@ export const setUserAvatar = (state, action) => {
   return Immutable.setIn(state, ["user", "avatar"], action.avatar);
 };
 
+export const setUserFollows = (state, action) => {
+  return Immutable.setIn(state, ["user", "follows"], action.follows);
+};
+
+
+export const addUserFollows = (state, action) => {
+  const follows = [...state.user.follows, ...action.follows]; 
+  return Immutable.setIn(state, ["user", "follows"], follows);
+};
 
 /* ------------- Hookup Reducers To Types ------------- */
 export const reducer = createReducer(INITIAL_STATE, {
@@ -60,6 +71,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_USER_ID]: setUserId,
 
   [Types.SET_USER_AVATAR]: setUserAvatar,
+
+  [Types.ADD_USER_FOLLOWS]: addUserFollows,
+  [Types.SET_USER_FOLLOWS]: setUserFollows,
 
   [Types.RESET_USER]: resetUser,
 });

@@ -3,7 +3,8 @@ import Icons from "../../assets";
 import Button from "../../components/Button";
 import Message from "../../components/Message";
 import {LinearGradient} from "expo-linear-gradient";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import firebase from "firebase";
 
 const MOCK_MESSAGE = [
   { _id: "1", content: "Ut vitae sapien facilisis, varius sem nec, consequat massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.", sendAt: new Date(), author: { name: "Fares", _id: "987" } },
@@ -17,14 +18,42 @@ const MOCK_MESSAGE = [
   { _id: "10", content: "Ut vitae sapien facilisis, varius sem nec, consequat.", sendAt: new Date(), author: { name: "Fares", _id: "987" } },
 ];
 
-const MessageDetails = () => {
+const MessageDetails = ({route}) => {
+  const [messages, setMessages] = useState([]);
+  const [content, setContent] = useState("");
 
   useEffect(() => {
-    // firebase.firestore().collection("messages").where("id", "in", follows)
+    firebase.firestore().collection("messages").doc(route.params.id)
+      .get()
+      .then(querySnapshot => {
+        setMessages(querySnapshot.data().messages);
+      });
   }, []);
+
+  function sendMessage() {
+    if(content == "") return;
+    const msg = {
+      author: route.params.userId,
+      datetime: new Date(),
+      content,
+    };
+
+    firebase.firestore().collection("messages").doc(route.params.id)
+    .update({
+      messages: firebase.firestore.FieldValue.arrayUnion(msg),
+    })
+    .then(function (docRef) {
+      setMessages(currentMessages => [...currentMessages, msg])
+      setContent("")
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+  }
+  
   function SendButton() {
     return (
-      <Pressable onPress={() => console.log("send message")} bg="#22252D" rounded="full" p={1} mr="1">
+      <Pressable onPress={sendMessage} bg="#22252D" rounded="full" p={1} mr="1">
         <Icons.Action.SendMessage />
       </Pressable>
     );
@@ -37,7 +66,12 @@ const MessageDetails = () => {
     <View flex={1}>
       <ScrollView flex={1} px={3} py={4}>
         <VStack space={2}>
-          {MOCK_MESSAGE.map(msg => <Message message={msg} />)}
+          {messages.length == 0 && (
+            <Center>
+              <Text color="white">Pas de message</Text>
+            </Center>
+          )}
+          {messages.map((msg, key) => <Message key={key} message={msg} />)}
         </VStack>
       </ScrollView>
 
@@ -47,9 +81,11 @@ const MessageDetails = () => {
             base: "75%",
             md: "25%"
           }}
+          value={content}
+          onChangeText={text => setContent(text)}
           h={{base: "10"}}
           type={"text"}
-          InputRightElement={<SendButton />}
+          InputRightElement={<SendButton onPress={sendMessage} />}
           size={5}
           borderRadius="full"
           mr="2"

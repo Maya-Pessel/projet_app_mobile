@@ -1,38 +1,54 @@
-import {Text, Center, Button, VStack, HStack, Box, Heading, ScrollView, Divider, Pressable, View} from "native-base";
-import Icons from "../../assets"
+import {Text, Center, VStack, HStack, Box, Heading, ScrollView, Divider, Pressable, View} from "native-base";
 import {LinearGradient} from "expo-linear-gradient";
-import CardUser from "../../components/CardUser";
 import { useEffect, useState } from "react";
 import firebase from "firebase";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AccountTypes } from "../../reducers/account";
+import { RefreshControl, SafeAreaView, StyleSheet } from 'react-native';
 
 
 const Message = ({ navigation }) => {
-  const [follows, setFollows] = useState([]);
+  const dispatch = useDispatch();
+  const follows = useSelector(state => state.account.user.follows);
   const userId = useSelector(state => state.account.userId);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
-    firebase.firestore().collection(`users`).doc(userId).collection("follows").get().then(querySnapshot => {
-      querySnapshot.forEach(doc => {
-        setFollows(currentFollows => [{ id: doc.id, ...doc.data() }, ...currentFollows]);
-      });
-    }).catch(error => console.error(error));
+    loadMessages();
   }, []);
 
   function onShowDetails(follow) {
-    navigation.navigate("messageDetails", { id: follow.id, title: follow.name });
+    navigation.navigate("messageDetails", { id: follow.id, title: follow.name, userId });
   }
-  
+
   function NBBox(props) {
     return <Box bg={"#22252DF2"}  pt={6} pb={4}  {...props} />;
   }
 
+  function loadMessages() {
+    setRefreshing(true);
+    firebase.firestore().collection(`users`).doc(userId).collection("follows").get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        dispatch({ type: AccountTypes.SET_USER_FOLLOWS, follows: [{ id: doc.id, ...doc.data() }] });
+      });
+    }).catch(error => console.error(error)).finally(() => setRefreshing(false));
+  }
 
   return (
+  
     <LinearGradient
       // Button Linear Gradient
       colors={['#394051', '#333d5c' ]} style={{flex:1}}>
-      <ScrollView stickyHeaderIndices={[0]}>
+
+      <ScrollView
+        stickyHeaderIndices={[0]}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={loadMessages}
+          />
+        }
+      >
         <NBBox>
           <Heading  textAlign={"center"} color={"white"}>Messages</Heading>
 
